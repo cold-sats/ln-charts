@@ -1,0 +1,109 @@
+.add-data-textarea {
+  margin-bottom: 5px;
+  width:515px;
+  resize: none;
+}
+
+textarea:focus {
+  outline: 1px solid #EBEBEB;
+  resize: none;
+}
+
+.save-data-button {
+  width:516px;
+  height: 40px;
+  opacity: 50%;
+  cursor: pointer;
+  font: 300 16px Avenir, serif;
+}
+
+.save-data-button:hover {
+  opacity:40%;
+}
+
+.error-container {
+  padding-left: 150px;
+  margin-top: -5px;
+  margin: 10px 0px 8px 0px;
+}
+
+.success-container {
+  padding-left: 215px;
+  margin-top: -5px;
+  margin: 10px 0px 8px 0px;
+}
+
+.alert-container {
+  margin-bottom:15px;
+  padding-left: 65px
+}
+
+.saved-data-container {
+  padding-bottom:5px;
+}
+
+.error-text {
+  color: red;
+  font: 300 16px Avenir, serif;
+}
+
+.success-text {
+  color: #41cab7;
+  font: 300 16px Avenir, serif;
+}
+
+.data-container {
+  margin-left: -10px;
+}
+
+img {
+  max-width: 100%;
+  padding-top: 10px;
+}
+
+.forwards-icon {
+  height: 20px;
+  margin: 0 9px -5px 16px;
+  cursor: pointer;
+}
+
+.invoices-icon {
+  height: 20px;
+  margin: 0 17px -5px 16px;
+  cursor: pointer;
+}
+
+.chainfees-icon {
+  height: 20px;
+  margin: 0 12px -5px 13px;
+  cursor: pointer;
+}
+
+.payments-icon {
+  height: 20px;
+  margin: 0 12px -5px 13px;
+  cursor: pointer;
+}
+
+.wiggle-animation {
+  animation: wiggle 1.5s infinite;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes wiggle {
+  10%, 90% {
+    transform: translate(-1px, 0);
+  }
+
+  20%, 80% {
+    transform: translate(2px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate(-4px, 0);
+  }
+
+  40%, 60% {
+    transform: translate(4px, 0);
+  }
+}

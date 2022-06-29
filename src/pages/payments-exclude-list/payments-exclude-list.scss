@@ -1,0 +1,35 @@
+.payments-textarea {
+  margin: 20px 0px 5px 0px;
+  width:300px;
+  resize: none
+}
+
+textarea:focus {
+  outline: 1px solid #EBEBEB;
+  resize: none;
+}
+
+.delete-icon {
+  margin-bottom: -2px;
+  padding-left: 5px;
+  height: 15px;
+  height: 20px;
+  margin: 0 5px -5px 13px;
+}
+
+.delete-icon:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+.add-item-button {
+  width: 301px;
+  height: 40px;
+  opacity: 50%;
+  cursor: pointer;
+  font: 300 16px Avenir, serif;
+}
+
+.add-item-button:hover {
+  opacity:40%;
+}

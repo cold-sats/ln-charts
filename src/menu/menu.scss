@@ -1,0 +1,63 @@
+.menu-container {
+  float: left;
+  margin: 5px -5px 0 -40px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  margin-bottom: 20px;
+}
+
+.logo-title-container {
+  line-height: 1.2em;
+}
+
+.menu-header-container {
+  margin: 15px 0px 1px 12px;
+  opacity: 30%
+}
+
+.menu-button-container {
+  padding: 10px 15px 8px 0px;
+  cursor: pointer;
+}
+
+.menu-button-container:hover {
+  background-color: #1B1B1B;
+  cursor: pointer;
+}
+
+.logo {
+  width: 40px;
+  margin: 0px 10px 0 12px;
+}
+
+.logo:hover {
+  cursor: pointer;
+  opacity: 60%
+}
+
+.menu-text {
+  font: 14px Avenir, serif;
+  color: white;
+}
+
+.frequency-icon {
+  height: 17px;
+  margin: 0 5px -3px 13px;
+  cursor: pointer;
+}
+
+.no-data {
+  opacity: 40%;
+}
+
+.link-selected {
+  opacity: 70%
+}
+
+.menu-button-selected {
+  background-color: #1B1B1B;
+}

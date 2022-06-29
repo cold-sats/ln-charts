@@ -1,0 +1,99 @@
+<menu></menu>
+
+<div class="sub-section-container" *ngIf="data?.loaded">
+
+  <div class="title-body-container">
+    <span class="title">
+      Step 1: Run bos commands on your Lightning node
+    </span><br>
+    <span class="body">
+      bos accounting forwards/payments/chain-fees/invoices --month x --year y --csv<br>
+    </span>
+  </div>
+
+  <div class="title-body-container">
+    <span class="title">
+      Step 2: Copy and paste the entire ouput from bos below
+    </span><br>
+    <span class="body">
+      No need to clarify which report. Paste one report type at a time.
+    </span>
+  </div>
+
+  <textarea class="add-data-textarea" id="bosTextArea" name="test" rows="4" cols="50" placeholder="Paste bos output here"></textarea><br>
+
+  <button *ngIf="!showSuccessAlert && !showInvalidDataError" (click)="saveData()" type="button" class="save-data-button">
+    Save Data
+  </button>
+
+  <div *ngIf="showInvalidDataError" class="error-text error-container">
+    Invalid data. See Github for help.
+  </div>
+
+  <div *ngIf="showSuccessAlert" class="success-text success-container">
+    Data Saved!
+  </div>
+
+  <div class="body alert-container">
+    <img class="icon" src="assets/images/private.svg">
+    This data is saved in local storage. View
+    <a class="big-link" href="https://github.com/ellismanellisplan/ln-charts" target="_blank">
+      GitHub
+    </a>.
+  </div>
+
+  <div class="title saved-data-container">
+    Saved Data
+    <a class="small-link margin-left" (click)="isConfirmingClearData = !isConfirmingClearData"><u>Clear Data</u></a>
+    <ng-container *ngIf="isConfirmingClearData">
+      <span class="small-link margin-left">
+        Are you sure?
+      </span>
+      <a class="small-link margin-left" (click)="confirmClearData()"><u>
+        Yes
+      </u></a>
+      <a class="small-link margin-left" (click)="isConfirmingClearData = false"><u>
+        No
+      </u></a>
+    </ng-container>
+  </div>
+
+  <div class="data-container body" [ngClass]="showWiggleAnimation?.forwards ? 'wiggle-animation' : ''">
+    <img class="forwards-icon" src="assets/images/forwards.svg">
+    Forwards: {{data?.rawForwardsLength.toLocaleString('en', {useGrouping:true})}}
+    <u class="small-link margin-left" (click)="exportTxt('forwards', data?.rawForwards)">
+      Export
+    </u>
+  </div>
+
+  <div class="data-container body" [ngClass]="showWiggleAnimation?.chainFees ? 'wiggle-animation' : ''">
+    <img class="chainfees-icon" src="assets/images/chain-fees.svg">
+    Chain Fees: {{data?.rawChainFeesLength.toLocaleString('en', {useGrouping:true})}}
+    <u class="small-link margin-left" (click)="exportTxt('chain-fees', data?.rawChainFees)">
+      Export
+    </u>
+  </div>
+
+  <div class="data-container body" [ngClass]="showWiggleAnimation?.payments ? 'wiggle-animation' : ''">
+    <img class="payments-icon" src="assets/images/payments.svg">
+    Payments: {{data?.rawPaymentsLength.toLocaleString('en', {useGrouping:true})}}
+    <u class="small-link margin-left" (click)="exportTxt('payments', data?.rawPayments)">
+      Export
+    </u>
+    <u class="small-link margin-left" (click)="goToPaymentsExcludeListPage()">
+      Payments Exclude List
+    </u>
+  </div>
+
+  <div class="data-container body" [ngClass]="showWiggleAnimation?.invoices ? 'wiggle-animation' : ''">
+    <img class="invoices-icon" src="assets/images/invoices.svg">
+    Invoices: {{data?.rawInvoicesLength.toLocaleString('en', {useGrouping:true})}}
+    <u class="small-link margin-left" (click)="exportTxt('invoices', data?.rawInvoices)">
+      Export
+    </u>
+    <u class="small-link margin-left" (click)="goToKeysendsExcludeListPage()">
+      Keysends Exclude List
+    </u>
+  </div>
+
+</div>

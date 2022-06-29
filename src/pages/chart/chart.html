@@ -1,0 +1,14 @@
+<menu></menu>
+
+<div *ngIf="data?.hasData" class="chart-container" #containerRef>
+
+  <ngx-charts-bar-vertical
+    [scheme]="colorScheme"
+    [yAxis]="true"
+    [results]="data?.selectedChart"
+    [animations]="false"
+    [view]="[getContainerWidth(), getContainerHeight()]"
+    class="chart">
+  </ngx-charts-bar-vertical>
+
+</div>

@@ -1,0 +1,79 @@
+.app-background {
+  background-color: black;
+}
+
+.sub-section-container {
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 20px
+}
+
+.link {
+  font: 12px Avenir, serif;
+  color: white;
+  cursor: pointer;
+}
+
+.link:hover {
+  cursor: pointer;
+  opacity: 70%
+}
+
+.header {
+  font: 17px Avenir, serif;
+  color: white;
+}
+
+.title {
+  font: 500 20px Avenir, serif;
+  color: white;
+}
+
+.small-text {
+  font: 12px Avenir, serif;
+  color: white;
+}
+
+.body {
+  font: 300 16px Avenir, serif;
+  color: white;
+}
+
+.title-body-container {
+  margin-bottom: 15px;
+  line-height: 1.8em;
+}
+
+.icon {
+  height: 20px;
+  margin: 0 5px -5px 13px;
+  cursor: pointer;
+}
+
+.big-link {
+  font: 300 16px Avenir, serif;
+  color: white;
+}
+
+.big-link:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.small-link {
+  font: 300 12px Avenir, serif;
+  color: white;
+}
+
+.small-link:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.margin-left {
+  margin-left: 15px;
+}
+
+.margin-bottom {
+  margin-bottom: 15px;
+}

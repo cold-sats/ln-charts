@@ -1,0 +1,69 @@
+<div class="menu-container">
+
+  <div class="logo-container">
+    <img src="assets/images/chart.svg" (click)="goToAddDataPage()" class="logo" [ngClass]="router.url == '/add-data' ? 'link-selected' : ''">
+    <div class="title logo-title-container">
+      ln-charts
+      <div class="small-text">
+        by
+        <u (click)="goToColdSatsPage()" [ngClass]="router.url == '/cold-sats' ? 'link-selected' : ''" class="link">Cold Sats</u>
+      </div>
+    </div>
+  </div>
+
+  <div class="small-text menu-header-container">
+    CHART
+  </div>
+
+  <div *ngFor="let chart of data.menuItems">
+    <div (click)="selectChart(chart)" class="menu-button-container" [ngClass]="chart.isSelected && router.url == '/' ? 'menu-button-selected' : ''">
+      <div class ="menu-text" [ngClass]="!chart.hasData ? 'no-data' : ''">
+        <img class="icon" src="{{chart.icon}}">
+        {{chart.title}}
+      </div>
+    </div>
+  </div>
+
+  <div class="small-text menu-header-container">
+    FREQUENCY
+  </div>
+
+  <div (click)="selectFrequency('daily')" class="menu-button-container" [ngClass]="data?.selectedFrequency == 'daily' && router.url == '/' ? 'menu-button-selected' : ''">
+    <div class ="menu-text" [ngClass]="!data.hasData ? 'no-data' : ''">
+      <img src="assets/images/daily.svg" class="frequency-icon">
+      Daily
+    </div>
+  </div>
+
+  <div class="menu-button-container" (click)="selectFrequency('weekly')" [ngClass]="data?.selectedFrequency == 'weekly' && router.url == '/' ? 'menu-button-selected' : ''">
+    <div class ="menu-text" [ngClass]="!data.hasData ? 'no-data' : ''">
+      <img src="assets/images/weekly.svg" class="frequency-icon">
+      Weekly
+    </div>
+  </div>
+
+  <div class="menu-button-container" (click)="selectFrequency('monthly')" [ngClass]="data?.selectedFrequency == 'monthly' && router.url == '/' ? 'menu-button-selected' : ''">
+    <div class ="menu-text" [ngClass]="!data.hasData ? 'no-data' : ''">
+      <img src="assets/images/monthly.svg" class="frequency-icon">
+      Monthly
+    </div>
+  </div>
+
+  <div *ngIf="data.hasData">
+
+    <div class="small-text menu-header-container">
+      FILTER
+    </div>
+
+    <div *ngFor="let filter of data?.filterMenuItems[data?.selectedChartName]">
+      <div (click)="selectFilter(filter.filter)" class="menu-button-container" [ngClass]="data?.selectedFilter == filter.filter && router.url == '/' ? 'menu-button-selected' : ''">
+        <div class ="menu-text">
+          <img src="{{filter?.icon}}" class="icon">
+          {{filter.title}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

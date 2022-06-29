@@ -1,0 +1,24 @@
+<menu></menu>
+
+<div class="sub-section-container">
+
+  <div class="title margin-bottom">
+    Keysends Exclude List
+  </div>
+
+  <div class="body margin-bottom" *ngFor="let item of data?.keysendsExcludeList">
+    {{item}}
+    <img class="delete-icon" src="assets/images/close.svg" (click)="removeFromKeysendsExcludeList(item)">
+  </div>
+
+  <div class="body" *ngIf="!data?.keysendsExcludeList?.length">
+    No Items Added
+  </div>
+
+  <textarea class="keysend-textarea" id="keysendsExcludeTextArea" rows="2" cols="50" placeholder="Example: 5000000"></textarea><br>
+
+  <button (click)="addToKeysendsExcludeList()" type="button" class="add-item-button">
+    Add Item
+  </button>
+
+</div>
