@@ -29,6 +29,8 @@ When running locally you have the option to save your data in the `bos-data` dir
 
 When running locally you can also save keysends / payments exclude list items in the `csv-parser` provider.
 
+ln-charts uses Google Analytics to track usage. If you don't want to allow this, pull the `no-google-analytics` branch which does not include it.
+
 ## How to Build Charts
 
 All data that you upload is saved in local cache. Nothing is saved remotely.
