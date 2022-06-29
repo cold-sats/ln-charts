@@ -5,8 +5,6 @@ import { filter } from 'rxjs/operators';
 
 import { Data } from 'src/providers/data';
 
-declare let gtag: Function;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
@@ -24,7 +22,6 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     this.loaded = false;
     try {
-      this.setUpAnalytics();
       await this.data.loadData();
       if (this.router.url == '/') {
         const path = this.data.hasData ? [''] : ['add-data'];
@@ -35,17 +32,6 @@ export class AppComponent implements OnInit {
       console.log(err)
     }
     this.loaded = true;
-  }
-
-  setUpAnalytics() {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-        .subscribe((event: NavigationEnd) => {
-            gtag('config', 'G-20MYM71Z9F',
-                {
-                    page_path: event.urlAfterRedirects
-                }
-            );
-        });
   }
 
 }
