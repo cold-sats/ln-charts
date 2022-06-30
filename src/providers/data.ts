@@ -209,18 +209,18 @@ export class Data {
     const type = this.getReportType(rawArray);
     switch (type) {
       case 'forwards':
-        this.forwards = this.parser.parseRawArrayIntoChartArray(rawArray, 'forwards');
+        this.forwards = this.parser.parseRawArrayIntoChartArray('forwards', rawArray, this.paymentsExcludeList, this.keysendsExcludeList);
         return this.saveRawData('forwards', 'rawForwards', rawArray, data);
       case 'invoices':
-        this.keysends = this.parser.parseRawArrayIntoChartArray(rawArray, 'keysends', this.keysendsExcludeList);
+        this.keysends = this.parser.parseRawArrayIntoChartArray('keysends', rawArray, this.paymentsExcludeList, this.keysendsExcludeList);
         return this.saveRawData('invoices', 'rawInvoices', rawArray, data);
       case 'chainFees':
-        this.chainFees = this.parser.parseRawArrayIntoChartArray(rawArray, 'chain-fees');
+        this.chainFees = this.parser.parseRawArrayIntoChartArray('chain-fees', rawArray, this.paymentsExcludeList, this.keysendsExcludeList);
         return this.saveRawData('chainFees', 'rawChainFees', rawArray, data);
       case 'payments':
-        this.rebalanceFees = this.parser.parseRawArrayIntoChartArray(rawArray, 'rebalance-fees', this.paymentsExcludeList);
-        this.lightningFees = this.parser.parseRawArrayIntoChartArray(rawArray, 'lightning-fees', this.paymentsExcludeList);
-        this.payments = this.parser.parseRawArrayIntoChartArray(rawArray, 'payments', this.paymentsExcludeList);
+        this.rebalanceFees = this.parser.parseRawArrayIntoChartArray('rebalance-fees', rawArray, this.paymentsExcludeList, this.keysendsExcludeList);
+        this.lightningFees = this.parser.parseRawArrayIntoChartArray('lightning-fees', rawArray, this.paymentsExcludeList, this.keysendsExcludeList);
+        this.payments = this.parser.parseRawArrayIntoChartArray('payments', rawArray, this.paymentsExcludeList, this.keysendsExcludeList);
         return this.saveRawData('payments', 'rawPayments', rawArray, data);
     }
   }

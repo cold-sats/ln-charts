@@ -19,7 +19,8 @@ export class PaymentsExcludeListPage {
 
   addToPaymentsExcludeList() {
     const data = (<HTMLInputElement>document.getElementById('paymentsExcludeTextArea')).value;
-    this.data.paymentsExcludeList.push(data);
+    const formattedData = '\"' + data + '\"';
+    this.data.paymentsExcludeList.push(formattedData);
     this.storage.set('paymentsExcludeList', this.data.paymentsExcludeList);
     (<HTMLInputElement>document.getElementById('paymentsExcludeTextArea')).value = '';
   }

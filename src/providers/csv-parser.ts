@@ -32,7 +32,7 @@ export class CSVParser {
     return array;
   }
 
-  parseRawArrayIntoChartArray(rawArray, subsetToParse = null, paymentsExcludeList = null, keysendsExcludeList = null) {
+  parseRawArrayIntoChartArray(subsetToParse, rawArray, paymentsExcludeList, keysendsExcludeList) {
     this.parseByDayWeekMonth(rawArray, subsetToParse, paymentsExcludeList, keysendsExcludeList);
     this.addMissingEmptyDays();
     this.addMissingEmptyWeeks();
