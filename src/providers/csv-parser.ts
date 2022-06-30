@@ -38,22 +38,8 @@ export class CSVParser {
     this.addMissingEmptyWeeks();
     this.addMissingEmptyMonths();
     const chartArray = this.parseFinalData(subsetToParse);
-    this.dayChart = [];
-    this.weekChart = [];
-    this.monthChart = [];
+    this.clearProviderData();
     return chartArray;
-  }
-
-  getChartValue(array, subsetToParse) {
-    if (subsetToParse.includes('sats')) {
-      return Math.abs(array.amounts.reduce((a, b) => a + b, 0));
-    } else if (subsetToParse.includes('count')) {
-      return array.amounts.length;
-    } else if (subsetToParse.includes('average')) {
-      let total = 0;
-      array.amounts.map((item) => total += item);
-      return Math.round(Math.abs(total / array.amounts.length)) || 0;
-    }
   }
 
   parseByDayWeekMonth(rawArray, subsetToParse, paymentsExcludeList, keysendsExcludeList) {
@@ -220,30 +206,6 @@ export class CSVParser {
     this.monthChart = array;
   }
 
-  getMonthName(monthNumber) {
-    const date = new Date();
-    date.setMonth(monthNumber - 1);
-    const monthName = date.toLocaleString("default", {month: "long"});
-    return monthName;
-  }
-
-  getLuxonDate(rawDate) {
-    const date = rawDate.replaceAll('"', '');
-    const test = DateTime.fromISO(date);
-    return test;
-  }
-
-  getJsDate(rawDate) {
-    const date = rawDate.replaceAll('"', '');
-    return new Date(date);
-  }
-
-  getDay(luxonDate) {
-    const formattedDate = luxonDate.toLocaleString(DateTime.DATETIME_SHORT);
-    const dayArray = formattedDate.split(',');
-    return dayArray[0];
-  }
-
   parseFinalData(subsetToParse): any {
     let data = {
       daily: {
@@ -311,6 +273,18 @@ export class CSVParser {
       data = this.addMoreForwardsFilters(data);
     }
     return data;
+  }
+
+  getChartValue(array, subsetToParse) {
+    if (subsetToParse.includes('sats')) {
+      return Math.abs(array.amounts.reduce((a, b) => a + b, 0));
+    } else if (subsetToParse.includes('count')) {
+      return array.amounts.length;
+    } else if (subsetToParse.includes('average')) {
+      let total = 0;
+      array.amounts.map((item) => total += item);
+      return Math.round(Math.abs(total / array.amounts.length)) || 0;
+    }
   }
 
   addMoreForwardsFilters(chartArray) {
@@ -438,6 +412,36 @@ export class CSVParser {
       });
     });
     return profit;
+  }
+
+  clearProviderData() {
+    this.dayChart = [];
+    this.weekChart = [];
+    this.monthChart = [];
+  }
+
+  getMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+    const monthName = date.toLocaleString("default", {month: "long"});
+    return monthName;
+  }
+
+  getLuxonDate(rawDate) {
+    const date = rawDate.replaceAll('"', '');
+    const test = DateTime.fromISO(date);
+    return test;
+  }
+
+  getJsDate(rawDate) {
+    const date = rawDate.replaceAll('"', '');
+    return new Date(date);
+  }
+
+  getDay(luxonDate) {
+    const formattedDate = luxonDate.toLocaleString(DateTime.DATETIME_SHORT);
+    const dayArray = formattedDate.split(',');
+    return dayArray[0];
   }
 
 }

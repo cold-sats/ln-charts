@@ -51,7 +51,7 @@ export class MenuComponent {
       return;
     }
     this.data.selectedFrequency = frequency;
-    if (!this.hasChartSelected()) this.data.selectDefaultChartMenu(false, true);
+    if (!this.hasChartSelected()) this.data.selectDefaultChartInMenu(false, true);
     const selectedChart = this.getSelectedChart(this.data.selectedChartName);
     if (this.data.selectedChartName == 'Profit') {
       this.data.selectedChart = selectedChart[frequency];
@@ -66,7 +66,7 @@ export class MenuComponent {
       return;
     }
     this.data.selectedFilter = filter;
-    if (!this.hasChartSelected()) this.data.selectDefaultChartMenu(true, false);
+    if (!this.hasChartSelected()) this.data.selectDefaultChartInMenu(true, false);
     const selectedChart = this.getSelectedChart(this.data.selectedChartName);
     if (this.data.selectedChartName == 'Profit') {
       this.data.selectedChart = selectedChart[this.data.selectedFrequency || 'weekly']

@@ -4,7 +4,9 @@
 
   <div class="title-body-container">
     <span class="title">
-      Step 1: Run bos commands on your Lightning node
+      Step 1: Run
+      <a class="title-link" href="https://github.com/alexbosworth/balanceofsatoshis" target="_blank">bos</a> 
+      commands on your Lightning node
     </span><br>
     <span class="body">
       bos accounting forwards/payments/chain-fees/invoices --month x --year y --csv<br>
@@ -34,12 +36,17 @@
     Data Saved!
   </div>
 
+  <div class="title title-alert-container">
+    <img class="private-icon" src="assets/images/private.svg">
+    Only you can see this data
+  </div>
+
   <div class="body alert-container">
-    <img class="icon" src="assets/images/private.svg">
-    This data is saved in local storage. View
-    <a class="big-link" href="https://github.com/cold-sats/ln-charts" target="_blank">
-      GitHub
-    </a>.
+    ln-charts uses
+    <a class="big-link" href="https://ionicframework.com/docs/v3/storage/" target="_blank">Ionic Storage</a>
+    to save this data on your device. It will persist until you clear data below. View
+    <a class="big-link" href="https://github.com/cold-sats/ln-charts" target="_blank">GitHub</a>
+    to learn more.
   </div>
 
   <div class="title saved-data-container">

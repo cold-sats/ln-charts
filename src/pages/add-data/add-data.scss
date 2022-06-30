@@ -17,6 +17,11 @@ textarea:focus {
   font: 300 16px Avenir, serif;
 }
 
+.private-icon {
+  height: 25px;
+  margin: 0 5px -6px 13px;
+}
+
 .save-data-button:hover {
   opacity:40%;
 }
@@ -33,9 +38,16 @@ textarea:focus {
   margin: 10px 0px 8px 0px;
 }
 
+.title-alert-container {
+  margin: 0px 0px 5px -5px;
+  width: 500px;
+  text-align: center;
+}
+
 .alert-container {
-  margin-bottom:15px;
-  padding-left: 65px
+  margin: 0px 0px 20px 5px;
+  width: 500px;
+  text-align: center;
 }
 
 .saved-data-container {
