@@ -4,8 +4,7 @@
 
 .sub-section-container {
   float: left;
-  margin-left: 20px;
-  margin-bottom: 20px
+  margin: 10px 0px 20px 20px;
 }
 
 .link {
@@ -47,6 +46,16 @@
 .icon {
   height: 20px;
   margin: 0 5px -5px 13px;
+  cursor: pointer;
+}
+
+.title-link {
+  font: 500 20px Avenir, serif;
+  color: white;
+}
+
+.title-link:hover {
+  opacity: 50%;
   cursor: pointer;
 }
 

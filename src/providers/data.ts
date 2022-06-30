@@ -188,9 +188,9 @@ export class Data {
     if (this.rawForwards) {
       this.profit = this.parser.parseProfit(this.forwards, this.keysends, this.chainFees, this.rebalanceFees, this.lightningFees, this.payments);
     }
-    this.checkIfHasData()
+    this.populateMenuWithData();
     if (this.hasData && !this.selectedChart) {
-      this.selectDefaultChartMenu(true, true);
+      this.selectDefaultChartInMenu(true, true);
     }
     this.loaded = true;
   }
@@ -256,7 +256,7 @@ export class Data {
     this.lastAddedChartType = lastAddedType;
   }
 
-  checkIfHasData() {
+  populateMenuWithData() {
     this.menuItems.map((item) => {
       if (this[item.dataName]) {
         this.hasData = true;
@@ -274,7 +274,7 @@ export class Data {
     }
   }
 
-  selectDefaultChartMenu(shouldSelectFrequency, shouldSelectFilter) {
+  selectDefaultChartInMenu(shouldSelectFrequency, shouldSelectFilter) {
     let didSelectItem = false;
     this.menuItems.map((item) => {
       if (item.hasData && !didSelectItem) {
