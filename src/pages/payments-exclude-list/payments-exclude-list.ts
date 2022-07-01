@@ -17,18 +17,20 @@ export class PaymentsExcludeListPage {
     public storage: Storage
   ) {}
 
-  addToPaymentsExcludeList() {
+  async addToPaymentsExcludeList() {
     const data = (<HTMLInputElement>document.getElementById('paymentsExcludeTextArea')).value;
     const formattedData = '\"' + data + '\"';
     this.data.paymentsExcludeList.push(formattedData);
-    this.storage.set('paymentsExcludeList', this.data.paymentsExcludeList);
+    await this.storage.set('paymentsExcludeList', this.data.paymentsExcludeList);
     (<HTMLInputElement>document.getElementById('paymentsExcludeTextArea')).value = '';
+    this.data.loadData();
   }
 
-  removeFromPaymentsExcludeList(item) {
+  async removeFromPaymentsExcludeList(item) {
     const index = this.data.paymentsExcludeList.indexOf(item);
     this.data.paymentsExcludeList.splice(index, 1);
-    this.storage.set('paymentsExcludeList', this.data.paymentsExcludeList);
+    await this.storage.set('paymentsExcludeList', this.data.paymentsExcludeList);
+    this.data.loadData();
   }
 
 }

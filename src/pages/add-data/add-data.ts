@@ -82,6 +82,7 @@ export class AddDataPage {
       invoices: false
     }, 1500)
     this.data.clearData();
+    this.data.clearStorage();
     this.isConfirmingClearData = false;
   }
 

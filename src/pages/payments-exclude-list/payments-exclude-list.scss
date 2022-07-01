@@ -1,7 +1,16 @@
 .payments-textarea {
   margin: 20px 0px 5px 0px;
-  width:300px;
+  width: 330px;
   resize: none
+}
+
+.title-container {
+  width: 330px;
+}
+
+.button-helper-container {
+  width:330px;
+  text-align: center;
 }
 
 textarea:focus {
@@ -23,11 +32,12 @@ textarea:focus {
 }
 
 .add-item-button {
-  width: 301px;
+  width: 331px;
   height: 40px;
   opacity: 50%;
   cursor: pointer;
   font: 300 16px Avenir, serif;
+  margin-bottom: 5px;
 }
 
 .add-item-button:hover {

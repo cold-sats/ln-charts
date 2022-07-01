@@ -178,6 +178,7 @@ export class Data {
   ) {}
 
   async loadData() {
+    this.clearData();
     this.loaded = false;
     this.paymentsExcludeList = await this.storage.get('paymentsExcludeList') || [];
     this.keysendsExcludeList = await this.storage.get('keysendsExcludeList') || [];
@@ -306,6 +307,9 @@ export class Data {
     this.rawPaymentsLength = 0;
     this.menuItems.map((item) => item.hasData = false);
     this.hasData = false;
+  }
+
+  clearStorage() {
     this.storage.clear();
   }
 

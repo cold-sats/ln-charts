@@ -2,8 +2,12 @@
 
 <div class="sub-section-container">
 
-  <div class="title margin-bottom">
+  <div class="title">
     Payments Exclude List
+  </div>
+
+  <div class="body extra-margin-bottom title-container">
+    Exclude the following from <b>Payments Chart:</b>
   </div>
 
   <div class="body margin-bottom" *ngFor="let item of data?.paymentsExcludeList">
@@ -12,13 +16,17 @@
   </div>
 
   <div class="body" *ngIf="!data?.paymentsExcludeList?.length">
-    No Items Added
+    No Payments Added
   </div>
 
   <textarea class="payments-textarea" id="paymentsExcludeTextArea" rows="2" cols="50" placeholder="Example: Wallet of Satoshi"></textarea><br>
 
   <button (click)="addToPaymentsExcludeList()" type="button" class="add-item-button">
-    Add Item
+    Add Payment
   </button>
+
+  <div class="body button-helper-container">
+    Paste the text from the "Notes" column of the bos payments report.
+  </div>
 
 </div>
