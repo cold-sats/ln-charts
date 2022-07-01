@@ -9,7 +9,7 @@ You can run ln-charts locally or access at https://cold-sats.github.io/ln-charts
 
 ## Data Storage
 
-ln-charts stores the data you upload on your device using [Ionic Storage](https://ionicframework.com/docs/angular/storage). Only you can see the data you upload. It will persist on your device until you remove it using the "Clear Data" button in the UI.
+ln-charts stores your data locally in your browser using [Ionic Storage](https://ionicframework.com/docs/angular/storage). Only you can see the data you upload. It will persist in your browser until you remove it using the "Clear Data" button in the UI.
 
 ## How to Build Charts
 
