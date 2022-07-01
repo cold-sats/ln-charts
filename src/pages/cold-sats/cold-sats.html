@@ -8,17 +8,13 @@
 
   <div class="header text-container">
     My name is Steven Ellis and I run the Lightning Node
-    <a class="big-link" href="https://amboss.space/c/coldsats" target="_blank">
-      Cold Sats
-    </a>
-    . I built ln-charts for myself but hope others can enjoy. Feel free to contribute more charts, improvements, fixes, etc.
+    <a class="big-link" href="https://amboss.space/c/coldsats" target="_blank">Cold Sats</a>.<br>
+    I built ln-charts for myself but hope others can enjoy. Feel free to contribute more charts, improvements, fixes, etc.
   </div>
 
   <div class="header text-container">
     If you enjoy ln-charts and want to donate please keysend:<br>
-    <u class="link" (click)="copyKeysendCommand()">
-      bos send 020a3dce2dab038955eb435a8342e4fe897304015314485d3738d5f41eccb47859 --amount 1000 --message "Thanks for ln-charts!"
-    </u>
+    <u class="link" (click)="copyKeysendCommand()">bos send 020a3dce2dab038955eb435a8342e4fe897304015314485d3738d5f41eccb47859 --amount 1000 --message "Thanks for ln-charts!"</u>
     <span class="link margin-left" *ngIf="showCopied">
       Copied. Thank you!
     </span>
