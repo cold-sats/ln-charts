@@ -3,37 +3,15 @@
 ln-charts parses the output of bos accounting commands into various charts for your Lightning Node. It runs on Angular, JS, HTML, CSS, ngx-charts, Ionic Storage and Luxon.
 
 You must have [bos](https://github.com/alexbosworth/balanceofsatoshis) which runs on [lnd](https://github.com/lightningnetwork/lnd) to use this version.
+charts.
 
-You can run ln-charts locally or access at www.cold-sats.github.io/ln-charts.
+You can run ln-charts locally or access at https://cold-sats.github.io/ln-charts/.
 
-## Running Locally
+## Data Storage
 
-Use Angular CLI to run ln-charts locally. The data you save in cache will persist between sessions.
-
-Download the repository then navigate to it:
-```
-cd <path-to-ln-charts>
-```
-
-Install Angular CLI:
-```
-npm install -g @angular/cli
-```
-
-Run on http://localhost:4200/#/:
-```
-ng serve --open
-```
-
-When running locally you have the option to save your data in the `bos-data` directory instead of inputting it into the UI and saving in cache. Only use one type of data storage at a time (either project files or inputting into UI).
-
-When running locally you can also save keysends / payments exclude list items in the `csv-parser` provider.
-
-ln-charts uses Google Analytics to track usage. If you don't want to allow this, pull the `no-google-analytics` branch which does not include it.
+ln-charts stores the data you upload on your device using [Ionic Storage](https://ionicframework.com/docs/angular/storage). Only you can see the data you upload. It will persist on your device until you remove it using the "Clear Data" button in the UI.
 
 ## How to Build Charts
-
-All data that you upload is saved in local cache. Nothing is saved remotely.
 
 **Step 1**: Run bos commands on your Lightning node.
 
@@ -58,18 +36,18 @@ Only paste one export type at a time. You can include the header at the beginnin
 
 ln-charts automatically determines the type of report entered and parses it into multiple charts:
 
-Forwards get parsed into:
+**Forwards** get parsed into:
 - Forwards - sats earned, count, avg. earning, avg. ppm, avg. earning, sats routed
 
-Chain Fees get parsed into:
+**Chain Fees** get parsed into:
 - Chain Fees - sats spent, count, avg. size
 
-Payments get parsed into:
+**Payments** get parsed into:
 - Payments - sats sent, count, avg. size
 - Rebalance Fees - sats sent, count, avg. size
 - Lightning Fees (doesn't include rebalance fees) - sats sent, count, avg. size
 
-Invoices get parsed into:
+**Invoices** get parsed into:
 - Keysends - sats received, count, avg. size
 
 All charts are then summed into a profit chart:
@@ -79,15 +57,45 @@ All charts are then summed into a profit chart:
 
 ln-charts has an exclude list for payments and keysends. Use it to filter out events you don't want to see in charts.
 
-Example Input for payments exclude list:
+**Payments Exclude List**
+
+Paste the text from the "Notes" column of the bos payments report. Example: ```Wallet of Satoshi```
+
+**Keysends Exclude List**
+
+Paste the text from the "Amount" column of the bos invoices report. Example: ```2000000```
+
+**How to Determine What to Exclude**
+1. Paste the bos accounting reports into Google Sheets
+2. Select the column -> Data -> Split text to columns
+3. Select all columns -> Data -> Create filter
+
+Now you can filter the columns and browse much easier. Browse invoices report for keysends (noted as [Push Payment]). Then scan payments report for payments with unique notes.
+
+## Running Locally
+
+Use Angular CLI to run ln-charts locally. The data you save in cache will persist between sessions.
+
+Download the repository then navigate to it:
 ```
-Wallet of Satoshi
+cd <path-to-ln-charts>
 ```
 
-Example Input for keysends exclude list:
+Install Angular CLI:
 ```
-2000000
+npm install -g @angular/cli
 ```
+
+Run on http://localhost:4200/#/:
+```
+ng serve --open
+```
+
+When running locally you have the option to save your data in the `bos-data` directory instead of inputting it into the UI and saving in cache. Only use one type of data storage at a time (either project files or inputting into UI).
+
+When running locally you can also save keysends / payments exclude list items in the `csv-parser` provider.
+
+ln-charts uses Google Analytics to track usage. If you prefer to not allow this, pull the `no-google-analytics` branch which does not include that.
 
 ## Backing Up Your Data
 
