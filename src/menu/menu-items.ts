@@ -102,9 +102,9 @@ export const filterMenuItems = {
       icon: 'assets/images/count.svg'
     },
     {
-      title: 'Average Size',
+      title: 'Avg. Size',
       filter: 'average',
-      icon: 'assets/images/average.svg'
+      icon: 'assets/images/ruler.svg'
     }
   ],
   'Payments': [
@@ -119,9 +119,9 @@ export const filterMenuItems = {
       icon: 'assets/images/count.svg'
     },
     {
-      title: 'Average Size',
+      title: 'Avg. Size',
       filter: 'average',
-      icon: 'assets/images/average.svg'
+      icon: 'assets/images/ruler.svg'
     }
   ],
   'Chain Fees': [
@@ -136,9 +136,9 @@ export const filterMenuItems = {
       icon: 'assets/images/count.svg'
     },
     {
-      title: 'Average Size',
+      title: 'Avg. Size',
       filter: 'average',
-      icon: 'assets/images/average.svg'
+      icon: 'assets/images/ruler.svg'
     }
   ],
   'Rebalance Fees': [
@@ -153,9 +153,9 @@ export const filterMenuItems = {
       icon: 'assets/images/count.svg'
     },
     {
-      title: 'Average Size',
+      title: 'Avg. Size',
       filter: 'average',
-      icon: 'assets/images/average.svg'
+      icon: 'assets/images/ruler.svg'
     }
   ],
   'Lightning Fees': [
@@ -170,9 +170,9 @@ export const filterMenuItems = {
       icon: 'assets/images/count.svg'
     },
     {
-      title: 'Average Size',
+      title: 'Avg. Size',
       filter: 'average',
-      icon: 'assets/images/average.svg'
+      icon: 'assets/images/ruler.svg'
     }
   ]
 }

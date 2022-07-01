@@ -17,17 +17,19 @@ export class KeysendsExcludeListPage {
     public storage: Storage
   ) {}
 
-  addToKeysendsExcludeList() {
+  async addToKeysendsExcludeList() {
     const data = (<HTMLInputElement>document.getElementById('keysendsExcludeTextArea')).value;
     this.data.keysendsExcludeList.push(data);
-    this.storage.set('keysendsExcludeList', this.data.keysendsExcludeList);
+    await this.storage.set('keysendsExcludeList', this.data.keysendsExcludeList);
     (<HTMLInputElement>document.getElementById('keysendsExcludeTextArea')).value = '';
+    this.data.loadData();
   }
 
-  removeFromKeysendsExcludeList(item) {
+  async removeFromKeysendsExcludeList(item) {
     const index = this.data.keysendsExcludeList.indexOf(item);
     this.data.keysendsExcludeList.splice(index, 1);
-    this.storage.set('keysendsExcludeList', this.data.keysendsExcludeList);
+    await this.storage.set('keysendsExcludeList', this.data.keysendsExcludeList);
+    this.data.loadData();
   }
 
 }

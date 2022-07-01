@@ -5,7 +5,7 @@
   <div class="title-body-container">
     <span class="title">
       Step 1: Run
-      <a class="title-link" href="https://github.com/alexbosworth/balanceofsatoshis" target="_blank">bos</a> 
+      <a class="title-link" href="https://github.com/alexbosworth/balanceofsatoshis" target="_blank">bos</a>
       commands on your Lightning node
     </span><br>
     <span class="body">
@@ -36,8 +36,8 @@
     Data Saved!
   </div>
 
-  <div class="title title-alert-container">
-    <img class="private-icon" src="assets/images/private.svg">
+  <div class="body title-alert-container">
+    <img class="icon" src="assets/images/private.svg">
     Only you can see this data
   </div>
 
@@ -68,39 +68,27 @@
   <div class="data-container body" [ngClass]="showWiggleAnimation?.forwards ? 'wiggle-animation' : ''">
     <img class="forwards-icon" src="assets/images/forwards.svg">
     Forwards: {{data?.rawForwardsLength.toLocaleString('en', {useGrouping:true})}}
-    <u class="small-link margin-left" (click)="exportTxt('forwards', data?.rawForwards)">
-      Export
-    </u>
+    <u class="small-link margin-left" (click)="exportTxt('forwards', data?.rawForwards)">Export</u>
   </div>
 
   <div class="data-container body" [ngClass]="showWiggleAnimation?.chainFees ? 'wiggle-animation' : ''">
     <img class="chainfees-icon" src="assets/images/chain-fees.svg">
     Chain Fees: {{data?.rawChainFeesLength.toLocaleString('en', {useGrouping:true})}}
-    <u class="small-link margin-left" (click)="exportTxt('chain-fees', data?.rawChainFees)">
-      Export
-    </u>
+    <u class="small-link margin-left" (click)="exportTxt('chain-fees', data?.rawChainFees)">Export</u>
   </div>
 
   <div class="data-container body" [ngClass]="showWiggleAnimation?.payments ? 'wiggle-animation' : ''">
     <img class="payments-icon" src="assets/images/payments.svg">
     Payments: {{data?.rawPaymentsLength.toLocaleString('en', {useGrouping:true})}}
-    <u class="small-link margin-left" (click)="exportTxt('payments', data?.rawPayments)">
-      Export
-    </u>
-    <u class="small-link margin-left" (click)="goToPaymentsExcludeListPage()">
-      Payments Exclude List
-    </u>
+    <u class="small-link margin-left" (click)="exportTxt('payments', data?.rawPayments)">Export</u>
+    <u class="small-link margin-left" (click)="goToPaymentsExcludeListPage()">Payments Exclude List</u>
   </div>
 
   <div class="data-container body" [ngClass]="showWiggleAnimation?.invoices ? 'wiggle-animation' : ''">
-    <img class="invoices-icon" src="assets/images/invoices.svg">
+    <img class="keysends-icon" src="assets/images/keysends.svg">
     Invoices: {{data?.rawInvoicesLength.toLocaleString('en', {useGrouping:true})}}
-    <u class="small-link margin-left" (click)="exportTxt('invoices', data?.rawInvoices)">
-      Export
-    </u>
-    <u class="small-link margin-left" (click)="goToKeysendsExcludeListPage()">
-      Keysends Exclude List
-    </u>
+    <u class="small-link margin-left" (click)="exportTxt('invoices', data?.rawInvoices)">Export</u>
+    <u class="small-link margin-left" (click)="goToKeysendsExcludeListPage()">Keysends Exclude List</u>
   </div>
 
 </div>

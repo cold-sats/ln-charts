@@ -17,11 +17,6 @@ textarea:focus {
   font: 300 16px Avenir, serif;
 }
 
-.private-icon {
-  height: 25px;
-  margin: 0 5px -6px 13px;
-}
-
 .save-data-button:hover {
   opacity:40%;
 }
@@ -76,25 +71,21 @@ img {
 .forwards-icon {
   height: 20px;
   margin: 0 9px -5px 16px;
-  cursor: pointer;
 }
 
-.invoices-icon {
+.keysends-icon {
   height: 20px;
-  margin: 0 17px -5px 16px;
-  cursor: pointer;
+  margin: 0 13px -5px 14px;
 }
 
 .chainfees-icon {
   height: 20px;
   margin: 0 12px -5px 13px;
-  cursor: pointer;
 }
 
 .payments-icon {
   height: 20px;
   margin: 0 12px -5px 13px;
-  cursor: pointer;
 }
 
 .wiggle-animation {
