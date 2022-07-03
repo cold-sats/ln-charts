@@ -423,14 +423,13 @@ export class CSVParser {
   getMonthName(monthNumber) {
     const date = new Date();
     date.setMonth(monthNumber - 1);
-    const monthName = date.toLocaleString("default", {month: "long"});
+    const monthName = date.toLocaleString("default", { month: "long", timeZone: 'UTC' });
     return monthName;
   }
 
   getLuxonDate(rawDate) {
     const date = rawDate.replaceAll('"', '');
-    const test = DateTime.fromISO(date);
-    return test;
+    return DateTime.fromISO(date, { zone: 'UTC' });
   }
 
   getJsDate(rawDate) {
