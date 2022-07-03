@@ -290,34 +290,34 @@ export class CSVParser {
   addMoreForwardsFilters(chartArray) {
     chartArray.daily['routeSize'] = this.dayChart.map((day) => {
       let total = 0;
-      day.routeSize.map((routeSize) => total += routeSize);
-      const avgRouteSize = Math.round(Math.abs(total / day.routeSize.length)) || 0;
+      day?.routeSize?.map((routeSize) => total += routeSize);
+      const avgRouteSize = Math.round(Math.abs(total / day?.routeSize?.length));
       return {
         name: day.name,
-        value: avgRouteSize
+        value: avgRouteSize || 0
       }
     });
     chartArray.weekly['routeSize'] = this.weekChart.map((week) => {
       let total = 0;
-      week.routeSize.map((routeSize) => total += routeSize);
-      const avgRouteSize = Math.round(Math.abs(total / week.routeSize.length)) || 0;
+      week?.routeSize?.map((routeSize) => total += routeSize);
+      const avgRouteSize = Math.round(Math.abs(total / week?.routeSize?.length));
       return {
         name: week.name,
-        value: avgRouteSize
+        value: avgRouteSize || 0
       }
     });
     chartArray.monthly['routeSize'] = this.monthChart.map((month) => {
       let total = 0;
-      month.routeSize.map((routeSize) => total += routeSize);
-      const avgRouteSize = Math.round(Math.abs(total / month.routeSize.length)) || 0;
+      month?.routeSize?.map((routeSize) => total += routeSize);
+      const avgRouteSize = Math.round(Math.abs(total / month?.routeSize?.length));
       return {
         name: month.name,
-        value: avgRouteSize
+        value: avgRouteSize || 0
       }
     });
     chartArray.daily['amountRouted'] = this.dayChart.map((day) => {
       let total = 0;
-      day.routeSize.map((routeSize) => total += routeSize);
+      day?.routeSize?.map((routeSize) => total += routeSize);
       return {
         name: day.name,
         value: total
@@ -325,7 +325,7 @@ export class CSVParser {
     });
     chartArray.weekly['amountRouted'] = this.weekChart.map((week) => {
       let total = 0;
-      week.routeSize.map((routeSize) => total += routeSize);
+      week?.routeSize?.map((routeSize) => total += routeSize);
       return {
         name: week.name,
         value: total
@@ -333,7 +333,7 @@ export class CSVParser {
     });
     chartArray.monthly['amountRouted'] = this.monthChart.map((month) => {
       let total = 0;
-      month.routeSize.map((routeSize) => total += routeSize);
+      month?.routeSize?.map((routeSize) => total += routeSize);
       return {
         name: month.name,
         value: total
@@ -341,32 +341,35 @@ export class CSVParser {
     });
     chartArray.daily['avgPPM'] = this.dayChart.map((day) => {
       let totalRouted = 0;
-      day.routeSize.map((routeSize) => totalRouted += routeSize);
+      day?.routeSize?.map((routeSize) => totalRouted += routeSize);
       let totalEarned = 0;
       day.amounts.map((earned) => totalEarned += earned);
+      const avgPPM = Math.round((totalEarned / totalRouted)*1000000);
       return {
         name: day.name,
-        value: Math.round((totalEarned / totalRouted)*1000000)
+        value: avgPPM || 0
       }
     });
     chartArray.weekly['avgPPM'] = this.weekChart.map((week) => {
       let totalRouted = 0;
-      week.routeSize.map((routeSize) => totalRouted += routeSize);
+      week?.routeSize?.map((routeSize) => totalRouted += routeSize);
       let totalEarned = 0;
       week.amounts.map((earned) => totalEarned += earned);
+      const avgPPM = Math.round((totalEarned / totalRouted)*1000000);
       return {
         name: week.name,
-        value: Math.round((totalEarned / totalRouted)*1000000)
+        value: avgPPM || 0
       }
     });
     chartArray.monthly['avgPPM'] = this.monthChart.map((month) => {
       let totalRouted = 0;
-      month.routeSize.map((routeSize) => totalRouted += routeSize);
+      month?.routeSize?.map((routeSize) => totalRouted += routeSize);
       let totalEarned = 0;
       month.amounts.map((earned) => totalEarned += earned);
+      const avgPPM = Math.round((totalEarned / totalRouted)*1000000);
       return {
         name: month.name,
-        value: Math.round((totalEarned / totalRouted)*1000000)
+        value: avgPPM || 0
       }
     });
     return chartArray;
