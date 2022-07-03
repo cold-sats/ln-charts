@@ -76,12 +76,19 @@ Now you can filter the columns and browse much easier. Browse invoices report fo
 
 Use Angular CLI to run ln-charts locally. The data you save in cache will persist between sessions.
 
-Download the repository then navigate to it:
+Clone the repo and navigate to it:
 ```
-cd <path-to-ln-charts>
+git clone https://github.com/cold-sats/ln-charts
+cd ln-charts
 ```
 
-Install Angular CLI:
+Install and start npm:
+```
+npm install
+npm start
+```
+
+Install Angular CLI globally:
 ```
 npm install -g @angular/cli
 ```
