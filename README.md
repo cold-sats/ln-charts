@@ -2,8 +2,7 @@
 
 ln-charts parses the output of bos accounting commands into various charts for your Lightning Node. It runs on Angular, JS, HTML, CSS, ngx-charts, Ionic Storage and Luxon.
 
-You must have [bos](https://github.com/alexbosworth/balanceofsatoshis) which runs on [lnd](https://github.com/lightningnetwork/lnd) to use this version.
-charts.
+You must have [bos](https://github.com/alexbosworth/balanceofsatoshis) which runs on [lnd](https://github.com/lightningnetwork/lnd) to use this version of ln-charts.
 
 You can run ln-charts locally or access at https://cold-sats.github.io/ln-charts/.
 
@@ -22,9 +21,13 @@ bos accounting payments --month x --year -y --csv
 bos accounting invoices --month x --year -y --csv
 ```
 
+You can add the `--disable-fiat` flag if you don't want bos to calculate the fiat values for your reports. ln-charts does not use this fiat value and this will speed things up.
+
 **Step 2**: Copy and paste the output into ln-charts interface.
 
-Only paste one export type at a time. You can include the header at the beginning or not. Don't include any spaces or line breaks at the beginning or end. Example output:
+Highlight the beginning of the text, scroll a little so scrollbar appears, grab the scrollbar and drag to the bottom (or scroll with the mouse wheel). Then hold shift, tap the end of the text to highlight everything, and copy.
+
+Only paste one report type at a time into ln-charts. You can include the header at the beginning or not. It can take up to a minute to paste large amounts of text. Example report:
 
 ```
 "Amount","Asset","Date & Time","Fiat Amount","From ID","Network ID","Notes","To ID","Transaction ID","Type"
