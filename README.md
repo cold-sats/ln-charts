@@ -56,7 +56,7 @@ ln-charts automatically determines the type of report entered and parses it into
 - Keysends - sats received, count, avg. size
 
 All charts are then summed into a profit chart:
-- Profit = forward earnings - chain fees - rebalance fees - lightning fees - payments
+- Profit = forward earnings + keysends - chain fees - rebalance fees - lightning fees - payments
 
 ## Exclude Lists
 
