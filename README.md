@@ -1,3 +1,5 @@
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39313620/177467161-b4ced571-9ce7-43fb-9cad-30641078f103.png">
+
 # ln-charts
 
 ln-charts parses the output of bos accounting commands into various charts for your Lightning Node. It runs on Angular, JS, HTML, CSS, ngx-charts, Ionic Storage and Luxon.
