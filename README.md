@@ -1,9 +1,10 @@
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/39313620/177467161-b4ced571-9ce7-43fb-9cad-30641078f103.png">
+
 # ln-charts
 
 ln-charts parses the output of bos accounting commands into various charts for your Lightning Node. It runs on Angular, JS, HTML, CSS, ngx-charts, Ionic Storage and Luxon.
 
-You must have [bos](https://github.com/alexbosworth/balanceofsatoshis) which runs on [lnd](https://github.com/lightningnetwork/lnd) to use this version.
-charts.
+You must have [bos](https://github.com/alexbosworth/balanceofsatoshis) which runs on [lnd](https://github.com/lightningnetwork/lnd) to use this version of ln-charts.
 
 You can run ln-charts locally or access at https://cold-sats.github.io/ln-charts/.
 
@@ -22,9 +23,13 @@ bos accounting payments --month x --year -y --csv
 bos accounting invoices --month x --year -y --csv
 ```
 
+You can add the `--disable-fiat` flag if you don't want bos to calculate the fiat values for your reports. ln-charts does not use this fiat value and this will speed things up.
+
 **Step 2**: Copy and paste the output into ln-charts interface.
 
-Only paste one export type at a time. You can include the header at the beginning or not. Don't include any spaces or line breaks at the beginning or end. Example output:
+Highlight the beginning of the text, scroll a little so scrollbar appears, grab the scrollbar and drag to the bottom (or scroll with the mouse wheel). Then hold shift, tap the end of the text to highlight everything, and copy.
+
+Only paste one report type at a time into ln-charts. You can include the header at the beginning or not. It can take up to a minute to paste large amounts of text. Example report:
 
 ```
 "Amount","Asset","Date & Time","Fiat Amount","From ID","Network ID","Notes","To ID","Transaction ID","Type"
@@ -51,7 +56,7 @@ ln-charts automatically determines the type of report entered and parses it into
 - Keysends - sats received, count, avg. size
 
 All charts are then summed into a profit chart:
-- Profit = forward earnings - chain fees - rebalance fees - lightning fees - payments
+- Profit = forward earnings + keysends - chain fees - rebalance fees - lightning fees - payments
 
 ## Exclude Lists
 
@@ -74,14 +79,21 @@ Now you can filter the columns and browse much easier. Browse invoices report fo
 
 ## Running Locally
 
-Use Angular CLI to run ln-charts locally. The data you save in cache will persist between sessions.
+Use Angular CLI to run ln-charts locally on your computer. The data you save will persist between sessions.
 
-Download the repository then navigate to it:
+Clone the repo and navigate to it:
 ```
-cd <path-to-ln-charts>
+git clone https://github.com/cold-sats/ln-charts
+cd ln-charts
 ```
 
-Install Angular CLI:
+Install and start npm (if you don't already have npm):
+```
+npm install
+npm start
+```
+
+Install Angular CLI globally:
 ```
 npm install -g @angular/cli
 ```
