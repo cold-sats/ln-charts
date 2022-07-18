@@ -170,9 +170,11 @@ export class CSVParser {
             52 - week.weekNumber + this.weekChart[i+1].weekNumber - 1 :
             this.weekChart[i+1].weekNumber - week.weekNumber - 1;
           for (let i = 0; i < numberOfMissingWeeks; i++) {
+            const luxonDate = week.luxonDate.plus({ weeks: (i+1) });
             const missingWeek = {
-              weekNumber: (week.weekNumber + i + 1) <= 52 ? (week.weekNumber + i + 1) : (week.weekNumber + i + 1 - 52),
-              amounts: []
+              name: `Week ${luxonDate.weekNumber} ${luxonDate.year}`,
+              amounts: [],
+              luxonDate: luxonDate //used for profit parsing
             };
             array.push(missingWeek);
           }
@@ -194,8 +196,9 @@ export class CSVParser {
             12 - month.monthNumber + this.monthChart[i+1].monthNumber - 1 :
             this.monthChart[i+1].monthNumber - month.monthNumber - 1;
           for (let i = 0; i < numberOfMissingMonths; i++) {
+            const luxonDate = month.luxonDate.plus({ months: (i+1) });
             const missingMonth = {
-              name: this.getMonthName((month.monthNumber + i + 1) <= 12 ? (month.monthNumber + i + 1) : (month.monthNumber + i + 1 - 12)),
+              name: `${luxonDate.monthLong} ${luxonDate.year}`,
               amounts: []
             };
             array.push(missingMonth);
@@ -231,19 +234,20 @@ export class CSVParser {
       weekly: {
         sats: this.weekChart.map((week) => {
           return {
-            name: 'Week ' + week.weekNumber,
-            value: this.getChartValue(week, 'sats')
+            name: week.name,
+            value: this.getChartValue(week, 'sats'),
+            luxonDate: week.luxonDate //used for profit parsing
           }
         }),
         count: this.weekChart.map((week) => {
           return {
-            name: 'Week ' + week.weekNumber,
+            name: week.name,
             value: this.getChartValue(week, 'count')
           }
         }),
         average: this.weekChart.map((week) => {
           return {
-            name: 'Week ' + week.weekNumber,
+            name: week.name,
             value: this.getChartValue(week, 'average')
           }
         })
@@ -377,44 +381,144 @@ export class CSVParser {
 
   parseProfit(forwards, keysends = null, chainFees = null, rebalanceFees = null, lightningFees = null, payments = null) {
     let profit = {
-      daily: [],
-      weekly: [],
-      monthly: []
+      daily: {
+        sats: [],
+        cumulative: []
+      },
+      weekly: {
+        sats: [],
+        cumulative: []
+      },
+      monthly: {
+        sats: [],
+        cumulative: []
+      }
     };
-    forwards?.daily.sats.map((forward, i) => {
-      const dayKeysends = keysends?.daily.sats.find((keysend) => keysend.name == forward.name);
-      const dayChainFees = chainFees?.daily.sats.find((chainFee) => chainFee.name == forward.name);
-      const dayRebalanceFees = rebalanceFees?.daily.sats.find((rebalanceFee) => rebalanceFee.name == forward.name);
-      const dayLightningFees = lightningFees?.daily.sats.find((lightningFee) => lightningFee.name == forward.name);
-      const dayPayments = payments?.daily.sats.find((payment) => payment.name == forward.name);
-      profit.daily.push({
-        name: forward.name,
-        value: forward?.value + (dayKeysends?.value || 0) - (dayChainFees?.value || 0) - (dayRebalanceFees?.value || 0) - (dayLightningFees?.value || 0) - (dayPayments?.value || 0)
+    const allDays = this.getAllRange('daily', forwards, keysends, chainFees, rebalanceFees, lightningFees, payments);
+    let dailyCumulativeTotal = 0;
+    allDays.map((day, i) => {
+      const dayForwards = forwards?.daily.sats.find((forward) => forward.name == day);
+      const dayKeysends = keysends?.daily.sats.find((keysend) => keysend.name == day);
+      const dayChainFees = chainFees?.daily.sats.find((chainFee) => chainFee.name == day);
+      const dayRebalanceFees = rebalanceFees?.daily.sats.find((rebalanceFee) => rebalanceFee.name == day);
+      const dayLightningFees = lightningFees?.daily.sats.find((lightningFee) => lightningFee.name == day);
+      const dayPayments = payments?.daily.sats.find((payment) => payment.name == day);
+      const amount = (dayForwards?.value || 0) + (dayKeysends?.value || 0) - (dayChainFees?.value || 0) - (dayRebalanceFees?.value || 0) - (dayLightningFees?.value || 0) - (dayPayments?.value || 0);
+      dailyCumulativeTotal += amount;
+      profit.daily.sats.push({
+        name: day,
+        value: amount
+      });
+      profit.daily.cumulative.push({
+        name: day,
+        value: dailyCumulativeTotal
       });
     });
-    forwards?.weekly.sats.map((forward, i) => {
-      const weekKeysends = keysends?.weekly.sats.find((keysend) => keysend.name == forward.name);
-      const weekChainFees = chainFees?.weekly.sats.find((chainFee) => chainFee.name == forward.name);
-      const weekRebalanceFees = rebalanceFees?.weekly.sats.find((rebalanceFee) => rebalanceFee.name == forward.name);
-      const weekLightningFees = lightningFees?.weekly.sats.find((lightningFee) => lightningFee.name == forward.name);
-      const weekPayments = payments?.weekly.sats.find((payment) => payment.name == forward.name);
-      profit.weekly.push({
-        name: forward.name,
-        value: forward?.value + (weekKeysends?.value || 0) - (weekChainFees?.value || 0) - (weekRebalanceFees?.value || 0) - (weekLightningFees?.value || 0) - (weekPayments?.value || 0)
+    const allWeeks = this.getAllRange('weekly', forwards, keysends, chainFees, rebalanceFees, lightningFees, payments);
+    let weeklyCumulativeTotal = 0;
+    allWeeks.map((week, i) => {
+      const weekForwards = forwards?.weekly.sats.find((forwards) => forwards.name == week);
+      const weekKeysends = keysends?.weekly.sats.find((keysend) => keysend.name == week);
+      const weekChainFees = chainFees?.weekly.sats.find((chainFee) => chainFee.name == week);
+      const weekRebalanceFees = rebalanceFees?.weekly.sats.find((rebalanceFee) => rebalanceFee.name == week);
+      const weekLightningFees = lightningFees?.weekly.sats.find((lightningFee) => lightningFee.name == week);
+      const weekPayments = payments?.weekly.sats.find((payment) => payment.name == week);
+      const amount = (weekForwards?.value || 0) + (weekKeysends?.value || 0) - (weekChainFees?.value || 0) - (weekRebalanceFees?.value || 0) - (weekLightningFees?.value || 0) - (weekPayments?.value || 0);
+      weeklyCumulativeTotal += amount;
+      profit.weekly.sats.push({
+        name: week,
+        value: amount
+      });
+      profit.weekly.cumulative.push({
+        name: week,
+        value: weeklyCumulativeTotal
       });
     });
-    forwards?.monthly.sats.map((forward, i) => {
-      const monthKeysends = keysends?.monthly.sats.find((keysend) => keysend.name == forward.name);
-      const monthChainFees = chainFees?.monthly.sats.find((chainFee) => chainFee.name == forward.name);
-      const monthRebalanceFees = rebalanceFees?.monthly.sats.find((rebalanceFee) => rebalanceFee.name == forward.name);
-      const monthLightningFees = lightningFees?.monthly.sats.find((lightningFee) => lightningFee.name == forward.name);
-      const monthPayments = payments?.monthly.sats.find((payment) => payment.name == forward.name);
-      profit.monthly.push({
-        name: forward.name,
-        value: forward?.value + (monthKeysends?.value || 0) - (monthChainFees?.value || 0) - (monthRebalanceFees?.value || 0) - (monthLightningFees?.value || 0) - (monthPayments?.value || 0)
+    const allMonths = this.getAllRange('monthly', forwards, keysends, chainFees, rebalanceFees, lightningFees, payments);
+    let monthlyCumulativeTotal = 0;
+    allMonths.map((month, i) => {
+      const monthForwards = forwards?.monthly.sats.find((forwards) => forwards.name == month);
+      const monthKeysends = keysends?.monthly.sats.find((keysend) => keysend.name == month);
+      const monthChainFees = chainFees?.monthly.sats.find((chainFee) => chainFee.name == month);
+      const monthRebalanceFees = rebalanceFees?.monthly.sats.find((rebalanceFee) => rebalanceFee.name == month);
+      const monthLightningFees = lightningFees?.monthly.sats.find((lightningFee) => lightningFee.name == month);
+      const monthPayments = payments?.monthly.sats.find((payment) => payment.name == month);
+      const amount = (monthForwards?.value || 0) + (monthKeysends?.value || 0) - (monthChainFees?.value || 0) - (monthRebalanceFees?.value || 0) - (monthLightningFees?.value || 0) - (monthPayments?.value || 0)
+      monthlyCumulativeTotal += amount;
+      profit.monthly.sats.push({
+        name: month,
+        value: amount
+      });
+      profit.monthly.cumulative.push({
+        name: month,
+        value: monthlyCumulativeTotal
       });
     });
     return profit;
+  }
+
+  getAllRange(range, forwards, keysends, chainFees, rebalanceFees, lightningFees, payments) {
+    let array = [];
+    forwards[range].sats.map((item) => {
+      array.push({
+        name: item.name,
+        luxonDate: item.luxonDate
+      });
+    });
+    keysends[range].sats.map((item) => {
+      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+      if (!alreadyAdded) {
+        array.push({
+          name: item.name,
+          luxonDate: item.luxonDate
+        });
+      }
+    });
+    chainFees[range].sats.map((item) => {
+      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+      if (!alreadyAdded) {
+        array.push({
+          name: item.name,
+          luxonDate: item.luxonDate
+        });
+      }
+    });
+    rebalanceFees[range].sats.map((item) => {
+      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+      if (!alreadyAdded) {
+        array.push({
+          name: item.name,
+          luxonDate: item.luxonDate
+        });
+      }
+    });
+    lightningFees[range].sats.map((item) => {
+      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+      if (!alreadyAdded) {
+        array.push({
+          name: item.name,
+          luxonDate: item.luxonDate
+        });
+      }
+    });
+    payments[range].sats.map((item) => {
+      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+      if (!alreadyAdded) {
+        array.push({
+          name: item.name,
+          luxonDate: item.luxonDate
+        });
+      }
+    });
+    let returnArray = [];
+    if (range == 'weekly') {
+      array.sort((a, b) => a.luxonDate - b.luxonDate);
+      array.map((item) => returnArray.push(item.name));
+    } else {
+      array.sort((a, b) => new Date(a.name).valueOf() - new Date(b.name).valueOf());
+      array.map((item) => returnArray.push(item.name));
+    }
+    return returnArray;
   }
 
   clearProviderData() {

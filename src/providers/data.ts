@@ -46,9 +46,18 @@ export class Data {
 
   //Formatted arrays for ngx charts
   profit: {
-    daily: chartModel[];
-    weekly: chartModel[];
-    monthly: chartModel[];
+    daily: {
+      sats: chartModel[];
+      cumulative: chartModel[];
+    };
+    weekly: {
+      sats: chartModel[];
+      cumulative: chartModel[];
+    };
+    monthly: {
+      sats: chartModel[];
+      cumulative: chartModel[];
+    };
   };
   chainFees: {
     daily: {
@@ -280,7 +289,7 @@ export class Data {
     this.menuItems.map((item) => {
       if (item.hasData && !didSelectItem) {
         this.selectedChartName = item.title;
-        this.selectedChart = item.dataName == 'profit' ? this[item.dataName].weekly : this[item.dataName].weekly.sats;
+        this.selectedChart = this[item.dataName].weekly.sats;
         item.isSelected = true;
         didSelectItem = true;
       }

@@ -53,9 +53,14 @@ export const menuItems = [
 export const filterMenuItems = {
   'Profit': [
     {
-      title: 'Sats',
+      title: 'Net',
       filter: 'sats',
       icon: 'assets/images/sats.svg'
+    },
+    {
+      title: 'Cumulative',
+      filter: 'cumulative',
+      icon: 'assets/images/cumulative.svg'
     }
   ],
   'Forwards': [

@@ -26,11 +26,7 @@ export class MenuComponent {
     this.data.selectedChartName = chart.title;
     if (!this.data.selectedFrequency) this.data.selectedFrequency = 'weekly';
     if (!this.data.selectedFilter || !this.chartHasSelectedFilter()) this.data.selectedFilter = 'sats';
-    if (chart.title == 'Profit') {
-      this.data.selectedChart = this.data[chart.dataName][this.data.selectedFrequency || 'weekly'];
-    } else {
-      this.data.selectedChart = this.data[chart.dataName][this.data.selectedFrequency || 'weekly'][this.data.selectedFilter || 'count'];
-    }
+    this.data.selectedChart = this.data[chart.dataName][this.data.selectedFrequency || 'weekly'][this.data.selectedFilter || 'count'];
     this.data.menuItems.map((chart) => chart.isSelected = false);
     chart.isSelected = true;
     this.router.navigate(['']);
@@ -53,11 +49,7 @@ export class MenuComponent {
     this.data.selectedFrequency = frequency;
     if (!this.hasChartSelected()) this.data.selectDefaultChartInMenu(false, true);
     const selectedChart = this.getSelectedChart(this.data.selectedChartName);
-    if (this.data.selectedChartName == 'Profit') {
-      this.data.selectedChart = selectedChart[frequency];
-    } else {
-      this.data.selectedChart = selectedChart[frequency][this.data.selectedFilter || 'count'];
-    }
+    this.data.selectedChart = selectedChart[frequency][this.data.selectedFilter || 'count'];
     this.router.navigate(['']);
   }
 
@@ -68,11 +60,7 @@ export class MenuComponent {
     this.data.selectedFilter = filter;
     if (!this.hasChartSelected()) this.data.selectDefaultChartInMenu(true, false);
     const selectedChart = this.getSelectedChart(this.data.selectedChartName);
-    if (this.data.selectedChartName == 'Profit') {
-      this.data.selectedChart = selectedChart[this.data.selectedFrequency || 'weekly']
-    } else {
-      this.data.selectedChart = selectedChart[this.data.selectedFrequency || 'weekly'][filter];
-    }
+    this.data.selectedChart = selectedChart[this.data.selectedFrequency || 'weekly'][filter];
     this.router.navigate(['']);
   }
 
