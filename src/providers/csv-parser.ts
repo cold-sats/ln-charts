@@ -103,14 +103,14 @@ export class CSVParser {
   }
 
   parseIntoWeekChart(luxonDate, amount, routeSize) {
-    const weekAlreadyAdded = this.weekChart.find(item => item.weekNumber == luxonDate.weekNumber);
+    const weekAlreadyAdded = this.weekChart.find(item => item.luxonDate.weekNumber + item.luxonDate.year == luxonDate.weekNumber + luxonDate.year);
     if (weekAlreadyAdded) {
       this.weekChart[this.weekChart.length - 1].amounts.push(amount);
       this.weekChart[this.weekChart.length - 1].routeSize.push(routeSize);
     } else {
       this.weekChart.push({
         luxonDate: luxonDate,
-        name: `Week ${luxonDate.weekNumber}` ,
+        name: `Week ${luxonDate.weekNumber} ${luxonDate.year}`,
         amounts: [ amount ],
         routeSize: [ routeSize ],
         weekNumber: luxonDate.weekNumber
@@ -119,14 +119,14 @@ export class CSVParser {
   }
 
   parseIntoMonthChart(luxonDate, amount, routeSize) {
-    const monthAlreadyAdded = this.monthChart.find(item => item.monthNumber == luxonDate.month);
+    const monthAlreadyAdded = this.monthChart.find(item => item.luxonDate.month + item.luxonDate.year == luxonDate.month + luxonDate.year);
     if (monthAlreadyAdded) {
       this.monthChart[this.monthChart.length - 1].amounts.push(amount);
       this.monthChart[this.monthChart.length - 1].routeSize.push(routeSize);
     } else {
       this.monthChart.push({
         luxonDate: luxonDate,
-        name: luxonDate.monthLong,
+        name: `${luxonDate.monthLong} ${luxonDate.year}`,
         amounts: [ amount ],
         routeSize: [ routeSize ],
         monthNumber: luxonDate.month
