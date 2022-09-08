@@ -465,51 +465,61 @@ export class CSVParser {
         luxonDate: item.luxonDate
       });
     });
-    keysends[range].sats.map((item) => {
-      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
-      if (!alreadyAdded) {
-        array.push({
-          name: item.name,
-          luxonDate: item.luxonDate
-        });
-      }
-    });
-    chainFees[range].sats.map((item) => {
-      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
-      if (!alreadyAdded) {
-        array.push({
-          name: item.name,
-          luxonDate: item.luxonDate
-        });
-      }
-    });
-    rebalanceFees[range].sats.map((item) => {
-      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
-      if (!alreadyAdded) {
-        array.push({
-          name: item.name,
-          luxonDate: item.luxonDate
-        });
-      }
-    });
-    lightningFees[range].sats.map((item) => {
-      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
-      if (!alreadyAdded) {
-        array.push({
-          name: item.name,
-          luxonDate: item.luxonDate
-        });
-      }
-    });
-    payments[range].sats.map((item) => {
-      const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
-      if (!alreadyAdded) {
-        array.push({
-          name: item.name,
-          luxonDate: item.luxonDate
-        });
-      }
-    });
+    if (keysends) {
+      keysends[range].sats.map((item) => {
+        const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+        if (!alreadyAdded) {
+          array.push({
+            name: item.name,
+            luxonDate: item.luxonDate
+          });
+        }
+      });
+    }
+    if (chainFees) {
+      chainFees[range].sats.map((item) => {
+        const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+        if (!alreadyAdded) {
+          array.push({
+            name: item.name,
+            luxonDate: item.luxonDate
+          });
+        }
+      });
+    }
+    if (rebalanceFees) {
+      rebalanceFees[range].sats.map((item) => {
+        const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+        if (!alreadyAdded) {
+          array.push({
+            name: item.name,
+            luxonDate: item.luxonDate
+          });
+        }
+      });
+    }
+    if (lightningFees) {
+      lightningFees[range].sats.map((item) => {
+        const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+        if (!alreadyAdded) {
+          array.push({
+            name: item.name,
+            luxonDate: item.luxonDate
+          });
+        }
+      });
+    }
+    if (payments) {
+      payments[range].sats.map((item) => {
+        const alreadyAdded = array.some(arrayItem => arrayItem.name == item.name);
+        if (!alreadyAdded) {
+          array.push({
+            name: item.name,
+            luxonDate: item.luxonDate
+          });
+        }
+      });
+    }
     let returnArray = [];
     if (range == 'weekly') {
       array.sort((a, b) => a.luxonDate - b.luxonDate);
