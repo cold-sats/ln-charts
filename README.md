@@ -17,10 +17,10 @@ ln-charts stores your data locally in your browser using [Ionic Storage](https:/
 **Step 1**: Run bos commands on your Lightning node.
 
 ```
-bos accounting forwards --month x --year -y --csv
-bos accounting chain-fees --month x --year -y --csv
-bos accounting payments --month x --year -y --csv
-bos accounting invoices --month x --year -y --csv
+bos accounting forwards --month x --year y --csv
+bos accounting chain-fees --month x --year y --csv
+bos accounting payments --month x --year y --csv
+bos accounting invoices --month x --year y --csv
 ```
 
 You can add the `--disable-fiat` flag if you don't want bos to calculate the fiat values for your reports. ln-charts does not use this fiat value and this will speed things up.
