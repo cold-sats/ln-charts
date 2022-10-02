@@ -119,7 +119,7 @@ export class CSVParser {
   }
 
   parseIntoMonthChart(luxonDate, amount, routeSize) {
-    const monthAlreadyAdded = this.monthChart.find(item => item.luxonDate.month + item.luxonDate.year == luxonDate.month + luxonDate.year);
+    const monthAlreadyAdded = this.monthChart.find(item => item.luxonDate.monthLong + item.luxonDate.year == luxonDate.monthLong + luxonDate.year);
     if (monthAlreadyAdded) {
       this.monthChart[this.monthChart.length - 1].amounts.push(amount);
       this.monthChart[this.monthChart.length - 1].routeSize.push(routeSize);
