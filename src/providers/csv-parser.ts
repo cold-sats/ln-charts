@@ -103,7 +103,7 @@ export class CSVParser {
   }
 
   parseIntoWeekChart(luxonDate, amount, routeSize) {
-    const weekAlreadyAdded = this.weekChart.find(item => item.luxonDate.weekNumber + item.luxonDate.year == luxonDate.weekNumber + luxonDate.year);
+    const weekAlreadyAdded = this.weekChart.find(item => item.luxonDate.weekNumber.toString() + item.luxonDate.year == luxonDate.weekNumber.toString() + luxonDate.year);
     if (weekAlreadyAdded) {
       this.weekChart[this.weekChart.length - 1].amounts.push(amount);
       this.weekChart[this.weekChart.length - 1].routeSize.push(routeSize);
